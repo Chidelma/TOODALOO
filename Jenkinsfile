@@ -8,7 +8,11 @@ pipeline {
     stages {
         stage("Install Dependencies") {
             steps {
-                sh 'pip install -r requirements.txt --user'
+                sh 'python -m pip install --upgrade pip'
+                sh 'mkdir -p ~/.virtualenvs'
+                sh 'python -m venv ~/.virtualenvs/toodaloo'
+                sh 'source ~/.virtualenvs/toodaloo/bin/activate'
+                sh 'pip install -r requirements.txt'
             }
         }
         stage('Tests') {
