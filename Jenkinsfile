@@ -1,10 +1,3 @@
-# Test Part 1
-#
-# Create a pipeline job that will perform a complete build of the toodaloo
-# project
-
-
-
 pipeline {
     agent any
     stages {
