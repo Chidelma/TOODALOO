@@ -1,9 +1,12 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'python:3.11.7'
+        }
+    }
     stages {
         stage("Install Dependencies") {
             steps {
-                sh 'sudo apt install libpq-dev python3-dev -y'
                 sh 'pip install -r requirements.txt'
             }
         }
