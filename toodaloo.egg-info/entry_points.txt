@@ -1,0 +1,2 @@
+[console_scripts]
+toodaloo = toodaloo.manage:main

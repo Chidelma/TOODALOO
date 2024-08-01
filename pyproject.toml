@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "toodaloo"
+version = "1.0.0"
+description = "A simple to-do Django application."
+requires-python = ">=3.11"
+dynamic = ["readme", "dependencies"]
+
+[project.scripts]
+toodaloo = "toodaloo.manage:main"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+namespaces = false
+
+[tool.setuptools.dynamic]
+readme = { file = "README.md", content-type = "text/markdown" }
+dependencies = { file = "requirements/production.txt" }
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "toodaloo.settings"
+python_files = "tests.py *_tests.py"
+junit_family = "xunit2"
+addopts = "-v --junitxml=build/reports/pytest.xml --cov=toodaloo --cov-report html --cov-report xml"
+
+[tool.coverage.run]
+data_file = "build/coverage"
+source = ["."]
+branch = true
+omit = [
+    ".idea/*",
+    ".git/*",
+    ".pytest_cache/*",
+    "*/settings/*",
+    "*/tests/*",
+    "*/migrations/*",
+    "**/tests.py",
+    "**/*_test.py",
+    "**/*_tests.py",
+    "*/manage.py",
+    "*/wsgi.py",
+    "./manage.py",
+]
+
+[tool.coverage.html]
+directory = "build/reports/htmlcov"
+
+[tool.coverage.xml]
+output = "build/reports/coverage.xml"
+
+[tool.isort]
+line_length=88
+include_trailing_comma = true
+multi_line_output = 3
+lines_after_imports = 2

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Tasks</h2>
+    <p><a href="{% url 'task-create' %}">Create Task</a></p>
+    <table class="table table-hover mb-5">
+    <thead>
+        <tr>
+            <th class="col-2">Due</th>
+            <th>Title</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in object_list %}
+            <tr>
+                <td>
+                    {{ task.due }}
+                </td>
+                <td>
+                    <a href="{% url 'task-update' task.id %}">{{ task.title }}</a>
+                </td>
+                <td>
+                    <a href="{% url 'task-complete' task.id %}">Complete</a> |
+                    <a href="{% url 'task-delete' task.id %}">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    <hr>
+    <h2>Completed Tasks</h2>
+    <table class="table table-hover">
+    <thead>
+        <tr>
+            <th class="col-2">Completed</th>
+            <th class="col-2">Due</th>
+            <th>Title</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in completed %}
+            <tr>
+                <td>
+                    {{ task.completed }}
+                </td>
+                <td>
+                    {{ task.due }}
+                </td>
+                <td>
+                    <a href="{% url 'task-update' task.id %}">{{ task.title }}</a>
+                </td>
+                <td>
+                    <a href="{% url 'task-restore' task.id %}">Restore</a> |
+                    <a href="{% url 'task-delete' task.id %}">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+{% endblock %}
