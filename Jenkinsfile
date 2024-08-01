@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage("Install Dependencies") {
             steps {
-                sh 'pip install --upgrade pip'
+                sh 'apt install libpq-dev python3-dev'
                 sh 'pip install -r requirements.txt'
             }
         }
