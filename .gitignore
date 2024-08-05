@@ -1,0 +1,8 @@
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
+.pytest_cache
+.ruff_cache
+./.terraform
+./build
+db.sqlite3
